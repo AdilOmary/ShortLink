@@ -17,16 +17,15 @@ class Shortener
     # check if it already exists
     # break the loop if it does not exist
     # it not, get an other code
-
-    i = 0
     loop do
-      code = get_new_code(i)
-      break code unless link_model.exists?(lookup_code: code)
-      i += 1
+      code = new_code
+      break code
+      unless link_model.exists?(lookup_code: code)
+      end
     end
   end
 
-  def get_new_code(i)
-    Digest::SHA256.hexdigest(url)[i..(i + 6)]
+  def new_code
+    SecureRandom.uuid[0..6]
   end
 end
