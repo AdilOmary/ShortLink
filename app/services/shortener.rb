@@ -26,7 +26,7 @@ class Shortener
     end
   end
 
-  def get_new_code()
+  def get_new_code(i)
     Digest::SHA256.hexdigest(url)[i..(i + 6)]
   end
 end
