@@ -19,11 +19,11 @@ class Shortener
     # it not, get an other code
     loop do
       code = new_code
-      break code
-      unless link_model.exists?(lookup_code: code)
-      end
+      break code unless link_model.exists?(lookup_code: code)
     end
   end
+
+  private
 
   def new_code
     SecureRandom.uuid[0..6]
